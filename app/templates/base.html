@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <title>{% block title %}{% endblock %}</title>
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="py-4 px-6 bg-gray-800 text-white">
+            <a class="text-lg mx-4" href="/">Home</a>
+            <a class="text-lg mx-4" href="/user/">All Users</a>
+            <a class="text-lg mx-4" href="/user/create">Create User</a>
+        </nav>
+        <main class="m-10">
+            <div class="flex">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </body>
+</html>

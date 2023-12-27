@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}All Users{% endblock %}
+
+{% block content %}
+<div class="m-auto w-1/2">
+    <h1  class="text-2xl mb-4">All Users</h1>
+
+    <div class="p-4 border rounded-md shadow-md">
+        {% for user in users %}
+        <a href="/user/{{user.id}}" class="flex justify-between my-4">
+            <p class="mr-4">{{ user.name }}</p>
+            <div>
+                <form id="{{user.id}}" class="update-form">
+                    <button class="bg-yellow-500 text-white rounded-md px-2 py-1" id="update" type="submit">Edit</button>
+                    <button class="bg-red-500 text-white rounded-md px-2 py-1" id="delete" type="submit">Delete</button>
+                </form>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    document.addEventListener('submit', (e) => {
+        if (e.target.classList.contains('update-form')) {
+            e.preventDefault();
+            const id = e.target.id;
+            if(e.submitter.id == 'update') {
+                window.location.href = `/user/update/${id}`;
+            }
+            else if (e.submitter.id == 'delete') {
+                fetch(`/user/${id}`, {
+                    method: 'DELETE'
+                }).then(() => {
+                    window.location.href = '/user/';
+                })
+            }
+        }
+    })
+</script>
+{% endblock %}

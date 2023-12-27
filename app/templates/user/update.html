@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Update User{% endblock %}
+
+{% block content %}
+<div class="w-1/2 m-auto">
+    <h1 class="text-2xl mb-4">Update User</h1>
+    <form action="/user/{{user.id}}" method="post" method="post" class="update-form border rounded-md shadow-md p-4">
+        <input type="text" name="name" placeholder="Enter your name" value="{{user.name}}" class="border rounded-md p-2">
+        <input type="email" name="email" placeholder="Enter your email" value="{{user.email}}" class="border rounded-md p-2">
+        <button type="submit" class="border rounded-md p-2 hover:bg-gray-600 hover:text-white">Update</button>
+    </form>
+</div>
+
+<!-- <script>
+    document.addEventListener('submit', (e) => {
+        if (e.target.classList.contains('update-form')) {
+            e.preventDefault();
+            const id = e.target.id;
+            const data = new FormData(document.getElementById(id));
+            fetch(`/user/${id}`, {
+                method: 'POST',
+                body: data
+            }).then(() => {
+                window.location.href = '/user/';
+            })
+        }
+    })
+</script> -->
+{% endblock %}
